@@ -9,5 +9,36 @@ window.onload = function() {
 };
 
 indexPage.onclick = function() {
-    apiError.innerHTML = "Opps.. Something went wrong!"
+    // update api url
+    chrome.storage.sync.set({axapi: { "host": hostInput.value }});
+
+    apiError.innerHTML = "Processing.."
+    // get page html
+    function getDOM() {
+        //You can play with your DOM here or check URL against your regex
+        return document.body.innerHTML;
+    }
+    // execute getDOM script in selected tab
+    chrome.tabs.executeScript({
+        code: '(' + getDOM + ')();'
+    }, (results) => {
+        mkRequest(results[0]);
+    });
+    
+    apiError.innerHTML = "Indexing.."
+    function mkRequest(bodyHTML) {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", hostInput.value+"index", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                apiError.innerHTML = "Success."
+            } else {
+                apiError.innerHTML = "Opps.. Something went wrong!"
+            }
+        };
+        xhr.send(JSON.stringify({
+            "html": bodyHTML
+        }));
+    }
 };
