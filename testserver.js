@@ -31,11 +31,11 @@ function readablePage(err, article, meta) {
     lines = article.content.split("\n");
     lines.forEach((line) => {
         // if (line.length > 10) {
-            console.log("\n"+line);
+            console.log("==============================================="+line);
         // }
     });
 
-    console.log("===============================================")
+    // console.log("===============================================")
 
     // Title
     console.log(article.title);
