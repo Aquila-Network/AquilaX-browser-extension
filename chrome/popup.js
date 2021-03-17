@@ -22,11 +22,13 @@ indexPage.onclick = function() {
     chrome.tabs.executeScript({
         code: '(' + getDOM + ')();'
     }, (results) => {
-        mkRequest(results[0]);
+        chrome.tabs.getSelected(null,function(tab) {
+            mkRequest(results[0], tab.url);
+        });
     });
     
     apiError.innerHTML = "Indexing.."
-    function mkRequest(bodyHTML) {
+    function mkRequest(bodyHTML, url) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", hostInput.value+"index", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
@@ -38,7 +40,8 @@ indexPage.onclick = function() {
             }
         };
         xhr.send(JSON.stringify({
-            "html": bodyHTML
+            "html": bodyHTML,
+            "url": url
         }));
     }
 };

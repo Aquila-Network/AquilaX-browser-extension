@@ -7,7 +7,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
         chrome.tabs.create({ url: "https://aquila.network" });
     }
 
-    chrome.storage.sync.set({axapi: { "host": "http://localhost:5005/"}});
+    chrome.storage.sync.set({axapi: { "host": "http://localhost:5000/"}});
 });
 
 chrome.declarativeContent.onPageChanged.removeRules(undefined, function() {

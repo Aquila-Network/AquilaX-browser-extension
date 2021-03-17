@@ -6,7 +6,7 @@ var read = require('node-readability')
 var app = express()
 app.use(cors())
 app.use(bodyParser.json({limit: '50mb'}))
-var port = 5005
+var port = 5000
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get('/', function (req, res) {
