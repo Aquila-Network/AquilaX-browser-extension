@@ -1,0 +1,26 @@
+{
+  "name": "xbrowser",
+  "version": "1.0.0",
+  "description": "Browser extension to access Aquila X",
+  "main": "testserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aquila-Network/AquilaX-browser-extension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Aquila-Network/AquilaX-browser-extension/issues"
+  },
+  "homepage": "https://github.com/Aquila-Network/AquilaX-browser-extension#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "clean-html": "^1.5.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "node-readability": "^3.0.0"
+  }
+}

@@ -2,7 +2,7 @@
     "name": "Aquila X",
     "version": "0.3.0",
     "description": "Aquila X page indexer",
-    "permissions": ["storage", "declarativeContent"],
+    "permissions": ["storage", "declarativeContent", "activeTab", "tabs"],
     "background": {
       "scripts": ["background.js"],
       "persistent": false
