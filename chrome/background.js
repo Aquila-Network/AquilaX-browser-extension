@@ -4,7 +4,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
         chrome.tabs.create({ url: "https://x.aquila.network/next" });
     }else if(details.reason == "update"){
         //handle an update
-        chrome.tabs.create({ url: "https://x.aquila.network/next" });
+        chrome.tabs.create({ url: "https://x.aquila.network/updates" });
     }
 
     chrome.storage.sync.set({axapi: { "host": "http://localhost:5000", "isURL": true }});
