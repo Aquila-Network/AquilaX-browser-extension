@@ -1,6 +1,6 @@
 {
     "name": "Aquila X",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "description": "Aquila X page indexer",
     "omnibox": { "keyword" : "!!" },
     "permissions": ["storage", "declarativeContent", "activeTab", "tabs"],
