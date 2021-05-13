@@ -1,10 +1,10 @@
 chrome.runtime.onInstalled.addListener(function(details) {
     if(details.reason == "install"){
         //handle a first install
-        chrome.tabs.create({ url: "https://aquila.network" });
+        chrome.tabs.create({ url: "https://x.aquila.network/next" });
     }else if(details.reason == "update"){
         //handle an update
-        chrome.tabs.create({ url: "https://aquila.network" });
+        chrome.tabs.create({ url: "https://x.aquila.network/next" });
     }
 
     chrome.storage.sync.set({axapi: { "host": "http://localhost:5000", "isURL": true }});
@@ -14,7 +14,7 @@ chrome.runtime.onInstalled.addListener(function(details) {
 chrome.omnibox.onInputEntered.addListener((text) => {
     // Encode user input for special characters , / ? : @ & = + $ #
     chrome.storage.sync.get("axapi", function(data) {
-        var newURL = "https://aquila.network/x" + "?q=" + encodeURIComponent(text);
+        var newURL = "https://x.aquila.network/" + "?q=" + encodeURIComponent(text);
         if (data.axapi.isURL) {
             newURL = data.axapi.host + "?q=" + encodeURIComponent(text);
         }
