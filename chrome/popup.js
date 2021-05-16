@@ -11,17 +11,18 @@ window.onload = function() {
 function validURL(str) {
     var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
         '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+        '((\\d{1,3}\\.){3}\\d{1,3}))|'+ // OR ip (v4) address
+        'localhost'+ // OR localhost
         '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
         '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
         '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
-    return !!pattern.test(str);
+    return pattern.test(str);
 }
 
 indexPage.onclick = function() {
     // update api url
     chrome.storage.sync.set({axapi: { "host": hostInput.value, "isURL": validURL(hostInput.value) }});
-
+    
     apiError.innerHTML = "Processing.."
     // get page html
     function getDOM() {
@@ -40,7 +41,13 @@ indexPage.onclick = function() {
     apiError.innerHTML = "Indexing.."
     function mkRequest(bodyHTML, url) {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", hostInput.value+"index", true);
+        // use cloud url if key is given
+        if (validURL(hostInput.value)) {
+            xhr.open("POST", hostInput.value+"index", true);
+        }
+        else {
+            xhr.open("POST", "https://x.aquila.network/api/index", true);
+        }
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onload = function () {
             if (xhr.status === 200) {
@@ -49,9 +56,16 @@ indexPage.onclick = function() {
                 apiError.innerHTML = "Opps.. Something went wrong!"
             }
         };
-        xhr.send(JSON.stringify({
+
+        // prepare data to be sent
+        var data = {
             "html": bodyHTML,
             "url": url
-        }));
+        }
+        if (!validURL(hostInput.value)) {
+            data.key = hostInput.value
+        }
+
+        xhr.send(JSON.stringify(data));
     }
 };

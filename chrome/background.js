@@ -1,10 +1,10 @@
 chrome.runtime.onInstalled.addListener(function(details) {
     if(details.reason == "install"){
         //handle a first install
-        chrome.tabs.create({ url: "https://x.aquila.network/next" });
+        chrome.tabs.create({ url: "https://x.aquila.network/next.html" });
     }else if(details.reason == "update"){
         //handle an update
-        chrome.tabs.create({ url: "https://x.aquila.network/updates" });
+        chrome.tabs.create({ url: "https://x.aquila.network/updates.html" });
     }
 
     chrome.storage.sync.set({axapi: { "host": "http://localhost:5000", "isURL": true }});
