@@ -65,6 +65,9 @@ indexPage.onclick = function() {
         if (!validURL(hostInput.value)) {
             data.key = hostInput.value
         }
+        else {
+            data.database = "9cqyPnQtFpg3vtVTUK73MdzNTdN2h5V5Cu3gvXd5tBJ6"
+        }
 
         xhr.send(JSON.stringify(data));
     }
