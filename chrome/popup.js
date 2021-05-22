@@ -43,7 +43,7 @@ indexPage.onclick = function() {
         var xhr = new XMLHttpRequest();
         // use cloud url if key is given
         if (validURL(hostInput.value)) {
-            xhr.open("POST", hostInput.value+"index", true);
+            xhr.open("POST", hostInput.value+"/api/index", true);
         }
         else {
             xhr.open("POST", "https://x.aquila.network/api/index", true);
