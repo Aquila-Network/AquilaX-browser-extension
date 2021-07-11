@@ -1,25 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="style.css" media="screen"/>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css" media="screen"/>
   </head>
   <body>
-        <div class="index">
-            <div class="index-header">
-                <h1>Aquila X</h1>
+        <div class="container">
+            <div class="header">
+                <h3 class="header-brand-text">Aquila<span>X</span></h3>
             </div>
-            <br />
-            <div class="index-form">
-                <h3>Host (URL / API key):</h3>
-                <input type="text" id="hostInput" placeholder="paste X server url / API key"/><br>
-                <br>
-                <input type="button" value="Index page" id="indexPage" class="index-button"/>
+            <div class="settings-form hide" id="settings_form">
+                <h3 class="form__desc">Settings</h3>
+                <div class="form__form-group">
+                    <label class="form__field-label">Host (URL / API key):</label>
+                    <input type="text" class="form__field-input" id="settings_form_host_or_api" placeholder="paste X server url / API key"/>
+                </div>
+                <input type="button" value="Update" id="update_settings_btn" class="form__btn"/>
+                <input type="button" value="Cancel" id="cancel_settings_btn" class="settings-form__cancel-btn form__btn form__btn--danger"/>
+            </div>
+            <div class="index-form" id="index_form">
+                <h3 class="form__desc">Bookmark this page</h3>
+                <div class="form__form-group">
+                    <label class="form__field-label">Host (URL / API key):</label>
+                    <input type="text" disabled readonly class="form__field-input" id="index_form_host_or_api" placeholder="paste X server url / API key"/>
+                </div>
+                <input type="button" value="Bookmark" id="index_submit_btn" class="form__btn"/>
+                <a href="#" id="edit_settings_link" class="index-form__settings-link">Edit Settings</a>
+            </div>
+            <div id="message_box" class="message-box message-box--primary hide">
             </div>
         </div>
-        <br />
         <div class="error-page">
                 <div id="apiError" class="try-again"></div>
         </div>
-    <script src="popup.js"></script>
+    <script src="assets/js/popup.js"></script>
   </body>
 </html>

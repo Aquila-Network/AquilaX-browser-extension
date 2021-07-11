@@ -1,22 +1,24 @@
+const aquilaUrl = 'https://x.aquila.network';
+const defaultHost = 'http://localhost:5000';
+
 chrome.runtime.onInstalled.addListener(function(details) {
     if(details.reason == "install"){
         //handle a first install
-        chrome.tabs.create({ url: "https://x.aquila.network/next.html" });
+        chrome.tabs.create({ url: `${aquilaUrl}/next.html` });
     }else if(details.reason == "update"){
         //handle an update
-        chrome.tabs.create({ url: "https://x.aquila.network/updates.html" });
+        chrome.tabs.create({ url: `${aquilaUrl}/updates.html` });
     }
-
-    chrome.storage.sync.set({axapi: { "host": "http://localhost:5000", "isURL": true }});
+    chrome.storage.sync.set({axapi: { host: defaultHost, isURL: true }});
 });
 
 // This event is fired with the user accepts the input in the omnibox.
 chrome.omnibox.onInputEntered.addListener((text) => {
     // Encode user input for special characters , / ? : @ & = + $ #
     chrome.storage.sync.get("axapi", function(data) {
-        var newURL = "https://x.aquila.network/" + "?q=" + encodeURIComponent(text);
+        let newURL = `${aquilaUrl}/?q=${encodeURIComponent(text)}`;
         if (data.axapi.isURL) {
-            newURL = data.axapi.host + "?q=" + encodeURIComponent(text);
+            newURL = `${data.axapi.host}?q=${encodeURIComponent(text)}`;
         }
         chrome.tabs.update({ url: newURL });
     });
