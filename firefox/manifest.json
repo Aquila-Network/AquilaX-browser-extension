@@ -14,7 +14,7 @@
 	"content_scripts": [
 		{
 		"matches": ["*://*.aquila.network/*"],
-		"js": ["borderify.js"]
+		"js": ["contentScript.js"]
 		}
 	],
 	"browser_action": {

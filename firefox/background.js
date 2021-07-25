@@ -25,7 +25,7 @@ browser.omnibox.onInputEntered.addListener((text) => {
 });
 
 browser.runtime.onMessageExternal.addListener(
-    function(request, sender, sendResponse) {
+    function(message, sender, sendResponse) {
         chrome.storage.sync.get("axapi", function(data) {
             if (data.axapi.isURL) {
                 sendResponse({
@@ -40,15 +40,4 @@ browser.runtime.onMessageExternal.addListener(
                 });
             }
         });
-});
-
-browser.declarativeContent.onPageChanged.removeRules(undefined, function() {
-    chrome.declarativeContent.onPageChanged.addRules([{
-        conditions: [new chrome.declarativeContent.PageStateMatcher({
-            pageUrl: {
-                schemes: ['http', 'https']
-            },
-        })],
-        actions: [new chrome.declarativeContent.ShowPageAction()]
-    }]);
 });
