@@ -31,3 +31,7 @@ Aquila X Browser Extensions are used to connect with Aquila X backend from a web
   />
  <br/>
 </div>
+
+### Install from web store
+[<img height=46px src="https://user-images.githubusercontent.com/68724239/111738541-92476300-88a7-11eb-8444-3f2baa515b9c.png"/>](https://chrome.google.com/webstore/detail/aquila-x/albdahjdcmldbcpjmbnbcbckgndaibnk)
+[<img height=46px src="https://user-images.githubusercontent.com/19545678/137582002-85df2d6f-2ad5-43ca-a673-04f4925b8c41.png"/>](https://addons.mozilla.org/en-US/firefox/addon/aquilax/)
