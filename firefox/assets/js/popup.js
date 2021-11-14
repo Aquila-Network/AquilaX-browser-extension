@@ -90,7 +90,7 @@
                 reqUrl = isValidUrl(axApiData.axapi.host)? axApiData.axapi.host : reqUrl;
                 const tab = await getCurrentTab();
                 const dataFromPage = await browser.tabs.executeScript(tab.id, {
-                    code: '(() => ({ html: document.body.innerHTML, url: document.location.href }))();'
+                    code: '(() => ({ html: `<html>${document.documentElement.innerHTML}</html>`, url: document.location.href }))();'
                 });
                 result = dataFromPage[0];
                 if(!isValidUrl(axApiData.axapi.host)) {

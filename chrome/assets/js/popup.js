@@ -89,7 +89,7 @@
                 const tab = await getCurrentTab();
                 const dataFromPage = await chrome.scripting.executeScript({
                     target: { tabId: tab.id},
-                    function: () =>  ({ html: document.body.innerHTML, url: document.location.href })
+                    function: () =>  ({ html: `<html>${document.documentElement.innerHTML}</html>`, url: document.location.href })
                 });
                 result = dataFromPage[0].result;
                 if(!isValidUrl(axApiData.axapi.host)) {
