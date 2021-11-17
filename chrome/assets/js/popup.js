@@ -85,7 +85,7 @@
             let reqUrl = apiUrl;
             try {
                 const axApiData = await getChromeStoreageData('axapi');
-                reqUrl = isValidUrl(axApiData.axapi.host)? axApiData.axapi.host : reqUrl;
+                reqUrl = isValidUrl(axApiData.axapi.host)? `${axApiData.axapi.host}/api/index` : reqUrl;
                 const tab = await getCurrentTab();
                 const dataFromPage = await chrome.scripting.executeScript({
                     target: { tabId: tab.id},

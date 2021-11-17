@@ -87,7 +87,7 @@
             let reqUrl = apiUrl;
             try {
                 const axApiData = await getStoreageData('axapi');
-                reqUrl = isValidUrl(axApiData.axapi.host)? axApiData.axapi.host : reqUrl;
+                reqUrl = isValidUrl(axApiData.axapi.host)? `${axApiData.axapi.host}/api/index` : reqUrl;
                 const tab = await getCurrentTab();
                 const dataFromPage = await browser.tabs.executeScript(tab.id, {
                     code: '(() => ({ html: `<html>${document.documentElement.innerHTML}</html>`, url: document.location.href }))();'

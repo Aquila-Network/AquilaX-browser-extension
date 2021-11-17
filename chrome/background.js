@@ -1,5 +1,5 @@
 const aquilaUrl = 'https://x.aquila.network';
-const defaultHost = 'http://localhost:5000';
+const defaultHost = 'http://localhost';
 
 chrome.runtime.onInstalled.addListener(function(details) {
     if(details.reason == "install"){
