@@ -1,0 +1,199 @@
+/*  
+ Css Reset
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/**
+ * Custom styles here
+ */
+
+.hide {
+    display: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-image: url(../img/bg.png);
+    background-size: cover;
+}
+.container {
+    padding: 15px;
+    width: 250px;
+}
+
+.header {
+    padding: 10px 0px;
+    margin-bottom: 15px;
+}
+
+.header-brand-text {
+    color: #424242;
+    text-align: center;
+    font-size: 25px;
+    margin: 0px;
+    padding: 0px;
+}
+.header-brand-text span {
+    color: #d744d9;
+    font-size: 35px;
+    font-weight: 800;
+}
+
+.index-form {
+    margin-bottom: 10px;
+}
+
+.form__desc {
+    color: #222222;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.form__form-group {
+    padding: 10px 0px;
+    margin-bottom: 10px;
+}
+
+.form__field-label {
+    display: block;
+    color: #828282;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.form__field-input {
+    padding: 5px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 25px;
+    color: #828282;
+    border: 0.1px solid #9e9e9e;
+    border-radius: 3px;
+}
+
+.form__field-input:disabled {
+    cursor: no-drop;
+}
+
+.form__btn {
+    padding: 10px 0px;
+    line-height: 20px;
+    display: block;
+    width: 100%;
+    background-color: #5c32e7;
+    border: 0px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 100;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.form__btn:disabled {
+    cursor: no-drop;
+    filter: grayscale(60%);
+}
+
+.form__btn:hover {
+    background-color: #6146e8;
+}
+
+.form__btn--danger {
+    background-color: #e91e63;
+}
+
+.form__btn--danger:hover {
+    background-color: #f43b82;
+}
+
+.index-form__settings-link {
+    display: block;
+    margin-top: 10px;
+    color: #757575;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transform: all .3s;
+}
+
+.index-form__settings-link:hover {
+    color: #e94d89;
+}
+
+.settings-form__cancel-btn {
+    margin-top: 10px;
+}
+
+.message-box {
+   border: 1px solid #ddd;
+   margin-top: 5px;
+}
+
+.message-box p{
+   padding: 2px; 
+   margin: 0px;
+   font-size: 12px;
+}
+
+.message-box--primary {
+    border-color: #2196f3;
+    color: #2196f3;
+    background-color: #e3f2fd;
+}
+
+.message-box--success {
+    border-color: #4caf50;
+    color: #4caf50;
+    background-color: #f1f8e9;
+}
+
+.message-box--danger {
+    border-color: #e91e63;
+    color: #e91e63;
+    background-color: #fce4ec;
+}
