@@ -1,7 +1,7 @@
 {
-    "name": "Aquila X",
-    "version": "0.3.1",
-    "description": "Aquila X page indexer",
+    "name": "AquilaX",
+    "version": "0.4.1",
+    "description": "AquilaX smart bookmarking",
     "omnibox": { "keyword" : "!!" },
     "permissions": ["storage", "declarativeContent", "activeTab", "tabs", "scripting"],
     "background": {

@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "Aquila X",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"description": "Aquila X page indexer",
 	"icons": {
 		"128": "assets/img/logo.png"
