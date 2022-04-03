@@ -14,22 +14,35 @@
             <div class="settings-form hide" id="settings_form">
                 <h3 class="form__desc">Settings</h3>
                 <div class="form__form-group">
-                    <label class="form__field-label">Host (URL / API key):</label>
-                    <input type="text" class="form__field-input" id="settings_form_host_or_api" placeholder="paste X server url / API key"/>
+                    <label class="form__field-label">Host</label>
+                    <input type="text" class="form__field-input" id="settings_form_host" placeholder="Host URL"/>
                 </div>
-                <input type="button" value="Update" id="update_settings_btn" class="form__btn"/>
-                <input type="button" value="Cancel" id="cancel_settings_btn" class="settings-form__cancel-btn form__btn form__btn--danger"/>
-            </div>
-            <div class="index-form" id="index_form">
-                <h3 class="form__desc">Bookmark this page</h3>
                 <div class="form__form-group">
-                    <label class="form__field-label">Host (URL / API key):</label>
-                    <input type="text" disabled readonly class="form__field-input" id="index_form_host_or_api" placeholder="paste X server url / API key"/>
+                    <label class="form__field-label">API Key</label>
+                    <input type="text" class="form__field-input" id="settings_form_api_key" placeholder="paste X server API key"/>
                 </div>
-                <input type="button" value="Bookmark" id="index_submit_btn" class="form__btn"/>
-                <a href="#" id="edit_settings_link" class="index-form__settings-link">Edit Settings</a>
+                <div class="settings-form__footer">
+                    <input type="button" value="Update" id="update_settings_btn" class="form__btn"/>
+                    <input type="button" value="Cancel" id="cancel_settings_btn" class="settings-form__cancel-btn form__btn form__btn--danger"/>
+                </div>
             </div>
-            <div id="message_box" class="message-box message-box--primary hide">
+            <div class="info-area" id="info_area">
+                <div class="info-area__header">
+                    <h3 class="info-area__title">Bookmark this page</h3>
+                </div>
+                <div class="info-area__content">
+                    <div class="info-area__content-item">
+                        <h4 class="info-area__content-title">You host</h4>
+                        <p class="info-area__content-value" id="info_area_host_value">http:localhost:5000</p>
+                    </div>
+                    <div class="info-area__content-item">
+                        <h4 class="info-area__content-title">You API key</h4>
+                        <p class="info-area__content-value" id="info_area_api_key_value">**********</p>
+                    </div>
+                    <input type="button" value="Bookmark" id="index_submit_btn" class="form__btn info-area__btn"/>
+                    <a href="#" id="edit_settings_link" class="index-form__settings-link">Edit Settings</a>
+                    <div id="message_box" class="message-box message-box--primary hide"></div>
+                </div>
             </div>
         </div>
         <div class="error-page">

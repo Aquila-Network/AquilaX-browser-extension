@@ -1,5 +1,5 @@
 (function() {
-    const apiUrl = 'https://x.aquila.network/api/index';
+    const axHost = 'https://x.aquila.network/api/index';
     const status = {
         loading: false,
         isError: false,
@@ -34,45 +34,46 @@
 
     const init = () => {
         const settingsForm = document.querySelector('#settings_form');
-        const indexForm = document.querySelector('#index_form');
+        const infoArea = document.querySelector('#info_area');
         const editSettingsLink = document.querySelector('#edit_settings_link')
         const cancelEditSettingsBtn = document.querySelector('#cancel_settings_btn');
         const indexSubmitBtn = document.querySelector('#index_submit_btn');
         const messageBox = document.querySelector('#message_box');
-        const indexFormHostOrApi = document.querySelector('#index_form_host_or_api');
-        const settingsFormHostOrApi = document.querySelector('#settings_form_host_or_api');
+        const infoAreaHostValue = document.querySelector("#info_area_host_value");
+        const settingsFormApiKey = document.querySelector("#settings_form_api_key");
+        const settingsFormHost = document.querySelector("#settings_form_host");
         const updateSettingsBtn = document.querySelector('#update_settings_btn');
-        let hostOrApi = '';
     
         getChromeStoreageData("axapi").then( data => {
-            hostOrApi = data.axapi.host;
-            settingsFormHostOrApi.value = hostOrApi;
-            indexFormHostOrApi.value = hostOrApi;
+            settingsFormHost.value = data.axapi.host || axHost;
+            settingsFormApiKey.value = data.axapi.apiKey || '';
+            infoAreaHostValue.textContent = data.axapi.host || axHost;
         });
 
         // register events
         cancelEditSettingsBtn.addEventListener('click', () => {
             settingsForm.classList.add('hide');
-            indexForm.classList.remove('hide');
+            infoArea.classList.remove('hide');
         });
 
         editSettingsLink.addEventListener('click', () => {
             settingsForm.classList.remove('hide');
-            indexForm.classList.add('hide');
+            infoArea.classList.add('hide');
         });
 
         updateSettingsBtn.addEventListener('click', () => {
-            const apiOrHost = settingsFormHostOrApi.value;
+            const host = settingsFormHost.value || '';
+            const apiKey = settingsFormApiKey.value || '';
             const data = {
-                isURL: isValidUrl(apiOrHost),
-                host: apiOrHost
+                host: host,
+                apiKey: apiKey
             }
             chrome.storage.sync.set({axapi: data});
-            indexFormHostOrApi.value = apiOrHost;
+            infoAreaHostValue.textContent = host;
             status.message = 'Settings updated';
             showMessage();
             settingsForm.classList.add('hide');
-            indexForm.classList.remove('hide');
+            infoArea.classList.remove('hide');
         });
 
         indexSubmitBtn.addEventListener('click', async () => {
@@ -82,18 +83,18 @@
             status.isError = false;
             showMessage();
             let result;
-            let reqUrl = apiUrl;
+            let reqUrl = axHost;
             try {
                 const axApiData = await getChromeStoreageData('axapi');
-                reqUrl = isValidUrl(axApiData.axapi.host)? axApiData.axapi.host : reqUrl;
+                reqUrl = axApiData.axapi.host || axHost;
                 const tab = await getCurrentTab();
                 const dataFromPage = await chrome.scripting.executeScript({
                     target: { tabId: tab.id},
                     function: () =>  ({ html: `<html>${document.documentElement.innerHTML}</html>`, url: document.location.href })
                 });
                 result = dataFromPage[0].result;
-                if(!isValidUrl(axApiData.axapi.host)) {
-                    result.key = axApiData.axapi.host;
+                if(axApiData.axapi.apiKey) {
+                    result.key = axApiData.axapi.apiKey;
                 }
             }catch(e) {
                 indexSubmitBtn.disabled = false;

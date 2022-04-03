@@ -1,5 +1,5 @@
 const aquilaUrl = 'https://x.aquila.network';
-const defaultHost = 'http://localhost:5000';
+const defaultHost = 'https://x.aquila.network';
 
 chrome.runtime.onInstalled.addListener(function(details) {
     if(details.reason == "install"){
@@ -27,16 +27,17 @@ chrome.omnibox.onInputEntered.addListener((text) => {
 chrome.runtime.onMessageExternal.addListener(
     function(request, sender, sendResponse) {
         chrome.storage.sync.get("axapi", function(data) {
-            if (data.axapi.isURL) {
+            if (data.axapi.host && data.axapi.apiKey) {
                 sendResponse({
-                    message: "No API key",
-                    success: false
+                    apiKey: data.axapi.apiKey,
+                    host: data.axapi.host,
+                    message: "Found API key",
+                    success: true
                 });
             } else {
                 sendResponse({
-                    key: data.axapi.host,
-                    message: "Found API key",
-                    success: true
+                    message: "No API key",
+                    success: false
                 });
             }
         });

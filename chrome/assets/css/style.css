@@ -81,26 +81,44 @@ body {
     font-weight: 800;
 }
 
-.index-form {
+.info-area {
     margin-bottom: 10px;
+}
+
+.info-area__header {
+    margin-bottom: 20px;
+}
+
+.info-area__content-title {
+    margin-bottom: 8px;
+}
+
+.info-area__content-item {
+    margin-bottom: 15px;
+    color: #5f6367;
+    font-size: 14px;
+}
+
+.info-area__content-value {
+    font-weight: bold;
+    font-size: 12px;
 }
 
 .form__desc {
     color: #222222;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     font-size: 16px;
     font-weight: 400;
 }
 
 .form__form-group {
-    padding: 10px 0px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 .form__field-label {
     display: block;
     color: #828282;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     font-size: 14px;
 }
 
@@ -163,6 +181,9 @@ body {
 
 .index-form__settings-link:hover {
     color: #e94d89;
+}
+.settings-form__footer {
+    margin-top: 25px;
 }
 
 .settings-form__cancel-btn {
