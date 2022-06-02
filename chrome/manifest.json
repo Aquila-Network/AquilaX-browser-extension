@@ -3,7 +3,16 @@
     "version": "0.3.1",
     "description": "Aquila X page indexer",
     "omnibox": { "keyword" : "!!" },
-    "permissions": ["storage", "declarativeContent", "activeTab", "tabs", "scripting"],
+    "permissions": [
+        "storage",
+        "declarativeContent",
+        "activeTab",
+        "tabs",
+        "scripting"
+    ],
+    "host_permissions": [
+        "https://fonts.googleapis.com/"
+    ],
     "background": {
       "service_worker": "background.js"
     },
@@ -19,5 +28,11 @@
     "externally_connectable": {
         "matches": ["*://*.aquila.network/*"]
     },
-    "manifest_version": 3
+    "manifest_version": 3,
+    "commands": {
+        "index-page": {
+          "suggested_key": "Ctrl+Shift+Y",
+          "description": "Index Current Page"
+        }
+    }
 }

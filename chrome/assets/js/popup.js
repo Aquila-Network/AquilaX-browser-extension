@@ -1,5 +1,5 @@
 (function() {
-    const axHost = 'https://x.aquila.network/api/index';
+    const axHost = 'https://x.aquila.network';
     const status = {
         loading: false,
         isError: false,
@@ -40,40 +40,53 @@
         const indexSubmitBtn = document.querySelector('#index_submit_btn');
         const messageBox = document.querySelector('#message_box');
         const infoAreaHostValue = document.querySelector("#info_area_host_value");
-        const settingsFormApiKey = document.querySelector("#settings_form_api_key");
+        const settingsFormSecretKey = document.querySelector("#settings_form_secret_key");
         const settingsFormHost = document.querySelector("#settings_form_host");
         const updateSettingsBtn = document.querySelector('#update_settings_btn');
-    
+     
         getChromeStoreageData("axapi").then( data => {
             settingsFormHost.value = data.axapi.host || axHost;
-            settingsFormApiKey.value = data.axapi.apiKey || '';
+            settingsFormSecretKey.value = data.axapi.secretKey || '';
             infoAreaHostValue.textContent = data.axapi.host || axHost;
+            showInfoPage();
         });
 
         // register events
         cancelEditSettingsBtn.addEventListener('click', () => {
-            settingsForm.classList.add('hide');
-            infoArea.classList.remove('hide');
+           showInfoPage(); 
         });
 
         editSettingsLink.addEventListener('click', () => {
-            settingsForm.classList.remove('hide');
-            infoArea.classList.add('hide');
+            showSettingsFormPage();
         });
+
+        settingsFormSecretKey.addEventListener('blur', () => {
+            if(settingsFormSecretKey.value.trim() === '') {
+                cancelEditSettingsBtn.disabled = true;
+            }else {
+                cancelEditSettingsBtn.disabled = false;
+            }
+        })
 
         updateSettingsBtn.addEventListener('click', () => {
             const host = settingsFormHost.value || '';
-            const apiKey = settingsFormApiKey.value || '';
+            const secretKey = settingsFormSecretKey.value || '';
             const data = {
                 host: host,
-                apiKey: apiKey
+                secretKey: secretKey
+            }
+            if(secretKey.trim() === '') {
+                status.message = 'Secret Key is required';
+                status.isError = true;
+                showMessage();
+                return;
             }
             chrome.storage.sync.set({axapi: data});
             infoAreaHostValue.textContent = host;
             status.message = 'Settings updated';
+            status.isError = false;
             showMessage();
-            settingsForm.classList.add('hide');
-            infoArea.classList.remove('hide');
+            showInfoPage();
         });
 
         indexSubmitBtn.addEventListener('click', async () => {
@@ -86,15 +99,15 @@
             let reqUrl = axHost;
             try {
                 const axApiData = await getChromeStoreageData('axapi');
-                reqUrl = axApiData.axapi.host || axHost;
+                reqUrl = `${axApiData.axapi.host || axHost}/api/index`;
                 const tab = await getCurrentTab();
                 const dataFromPage = await chrome.scripting.executeScript({
                     target: { tabId: tab.id},
                     function: () =>  ({ html: `<html>${document.documentElement.innerHTML}</html>`, url: document.location.href })
                 });
                 result = dataFromPage[0].result;
-                if(axApiData.axapi.apiKey) {
-                    result.key = axApiData.axapi.apiKey;
+                if(axApiData.axapi.secretKey) {
+                    result.key = axApiData.axapi.secretKey;
                 }
             }catch(e) {
                 indexSubmitBtn.disabled = false;
@@ -130,6 +143,32 @@
             }
             
         });
+
+        const showSettingsFormPage = () => {
+            settingsForm.classList.remove('hide');
+            infoArea.classList.add('hide');
+            if(settingsFormSecretKey.value === '') {
+                cancelEditSettingsBtn.disabled = true;
+            }else {
+                cancelEditSettingsBtn.disabled = false;
+            }
+        }
+
+        const showInfoPage = () => {
+            // if api key is empty then show edit page
+            if(settingsFormSecretKey.value === '') {
+                settingsForm.classList.remove('hide');
+                infoArea.classList.add('hide');
+                cancelEditSettingsBtn.disabled = true;
+                status.message = "Please enter a Secret Key";
+                status.isError = true;
+                status.loading = false;
+                showMessage()
+                return;
+            }
+            settingsForm.classList.add('hide');
+            infoArea.classList.remove('hide');
+        }
 
         const showMessage = () => {
             const { message, loading, isError } = status;
@@ -170,7 +209,8 @@
                     messageBox.classList.add('hide');
                 }, 5000);
             }
-        }
+        } 
+
     }
 
     window.onload = function(){

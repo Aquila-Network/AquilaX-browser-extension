@@ -11,6 +11,7 @@
             <div class="header">
                 <h3 class="header-brand-text">Aquila<span>X</span></h3>
             </div>
+            <div id="message_box" class="message-box message-box--primary hide"></div>
             <div class="settings-form hide" id="settings_form">
                 <h3 class="form__desc">Settings</h3>
                 <div class="form__form-group">
@@ -18,8 +19,9 @@
                     <input type="text" class="form__field-input" id="settings_form_host" placeholder="Host URL"/>
                 </div>
                 <div class="form__form-group">
-                    <label class="form__field-label">API Key</label>
-                    <input type="text" class="form__field-input" id="settings_form_api_key" placeholder="paste X server API key"/>
+                    <label class="form__field-label">Secret Key</label>
+                    <input type="text" class="form__field-input" id="settings_form_secret_key" placeholder="paste X server Secret key"/>
+                    <p class="form__field-info"><a target="__blank" href="https://airtable.com/shrhvlKgL6otYCnlb">Generate Secret</a></p>
                 </div>
                 <div class="settings-form__footer">
                     <input type="button" value="Update" id="update_settings_btn" class="form__btn"/>
@@ -32,16 +34,15 @@
                 </div>
                 <div class="info-area__content">
                     <div class="info-area__content-item">
-                        <h4 class="info-area__content-title">You host</h4>
+                        <h4 class="info-area__content-title">Your host</h4>
                         <p class="info-area__content-value" id="info_area_host_value">http:localhost:5000</p>
                     </div>
                     <div class="info-area__content-item">
-                        <h4 class="info-area__content-title">You API key</h4>
-                        <p class="info-area__content-value" id="info_area_api_key_value">**********</p>
+                        <h4 class="info-area__content-title">Your Secret key</h4>
+                        <p class="info-area__content-value" id="info_area_secret_key_value">**********</p>
                     </div>
                     <input type="button" value="Bookmark" id="index_submit_btn" class="form__btn info-area__btn"/>
                     <a href="#" id="edit_settings_link" class="index-form__settings-link">Edit Settings</a>
-                    <div id="message_box" class="message-box message-box--primary hide"></div>
                 </div>
             </div>
         </div>
